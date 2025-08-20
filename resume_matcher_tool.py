@@ -85,6 +85,6 @@ def match_and_process_jobs() -> str:
     # Save updated DataFrame to a new file
     output_path = file_path.replace(".csv", "_with_matches.csv")
     df.to_csv(output_path, index=False)
-    # os.remove("linkedin_jobs.csv")
+    os.remove("linkedin_jobs.csv")
 
     return f"✅ Processed {processed_count} job descriptions successfully.\n📄 Output saved to: {output_path}"
