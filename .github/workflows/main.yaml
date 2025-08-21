@@ -23,16 +23,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # - name: Run agent pipeline
-      #   env:
-      #     AGENT_API_KEY: ${{ secrets.AGENT_API_KEY }}
-      #     TOOL1_API_KEY: ${{ secrets.TOOL1_API_KEY }}
-      #     TOOL2_API_KEY: ${{ secrets.TOOL2_API_KEY }}
-      #   run: |
-      #     python agent_runner.py  # this should output final.csv
+      - name: Run agent pipeline
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          A4F_API_KEY: ${{ secrets.A4F_API_KEY }}
+          A4F_BASE_URL: ${{ secrets.A4F_BASE_URL }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          python agent_runner.py  # this should output final_output.csv
 
-      # - name: Upload final CSV as artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: final-csv-output
-      #     path: final.csv
+      - name: Upload final CSV as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-csv-output
+          path: final_output.csv
